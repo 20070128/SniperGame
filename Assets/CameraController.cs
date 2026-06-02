@@ -9,8 +9,6 @@ public class CameraController : MonoBehaviour
     //äpìxêßå¿
     [SerializeField] private float xMinRotation = -90f;
     [SerializeField] private float xMaxRotation = 90f;
-    [SerializeField] private float yMinRotation = -90f;
-    [SerializeField] private float yMaxRotation = 90f;
     //Cameraë¨ìx
     [SerializeField] private float senstivity = 0.1f;
     private float xRotation = 0f;
@@ -21,14 +19,12 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 lookInput = InputManager.Instance.LookInput;
         xRotation -= lookInput.y * senstivity;
         xRotation = Mathf.Clamp(xRotation, xMinRotation, xMaxRotation);
         yRotation += lookInput.x * senstivity;
-        yRotation = Mathf.Clamp(yRotation, yMinRotation, yMaxRotation);
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }
 }
